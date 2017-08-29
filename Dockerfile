@@ -26,7 +26,7 @@ RUN mkdir /tmp/pure-ftpd/ && \
 	cd /tmp/pure-ftpd/ && \
 	apt-get source pure-ftpd && \
 	cd pure-ftpd-* && \
-	./configure --with-tls && \
+	./configure --with-tls --with-implicittls && \
 	sed -i '/^optflags=/ s/$/ --without-capabilities/g' ./debian/rules && \
 	dpkg-buildpackage -b -uc
 
