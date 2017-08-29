@@ -55,6 +55,10 @@ RUN apt-get install -y rsyslog && \
 COPY run.sh /run.sh
 RUN chmod u+x /run.sh
 
+#copy dummy certificate
+COPY pure-ftpd.pem /etc/ssl/private/pure-ftpd.pem
+RUN chmod 600 /etc/ssl/private/*.pem
+
 # default publichost, you'll need to set this for passive support
 ENV PUBLICHOST ftp.foo.com
 
