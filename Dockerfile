@@ -41,6 +41,8 @@ RUN apt-mark hold pure-ftpd pure-ftpd-common
 # setup ftpgroup and ftpuser
 RUN groupadd ftpgroup
 RUN useradd -g ftpgroup -d /home/ftpusers -s /dev/null ftpuser
+RUN ( echo test ; echo test ) | pure-pw useradd ftpuser -u ftpuser -g ftpgroup -d /home/ftpuser -m > /dev/null 2>&1
+RUN  pure-pw mkdb
 
 # rsyslog for logging (ref https://github.com/stilliard/docker-pure-ftpd/issues/17)
 RUN apt-get install -y rsyslog && \
